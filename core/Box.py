@@ -1,13 +1,10 @@
 
 from PySide import QtGui, QtCore
 
-class Box(QtGui.QPushButton):
-	"""docstring for Box"""
-
-	def create( self, parent=None, name='defaultBox', w=400, h=300, x=10, y=20 ):
-		
-		box = QtGui.QGroupBox( name, parent )
-
-		box.setGeometry( x, y, w, h )
-
-		return box
+class Box( QtGui.QGroupBox ):
+	"""docstring for Box"""	
+	def __init__( self, parent=None, name='defaultBox', w=400, h=300, x=10, y=20 ):
+		super( Box, self ).__init__()
+		self.setParent( parent )
+		self.setTitle( name )
+		self.setGeometry( x, y, w, h )
