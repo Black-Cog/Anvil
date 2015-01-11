@@ -1,7 +1,7 @@
 
 from PySide import QtCore, QtGui
 
-class Window( QtGui.QWidget ):
+class Window( QtGui.QMainWindow ):
 	"""docstring for Window"""
 	def __init__( self, title='undefind', size=[500, 400] ):
 		super( Window, self ).__init__()
