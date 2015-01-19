@@ -8,12 +8,10 @@ class Window( QtGui.QMainWindow ):
 		self.setWindowTitle( title )
 		self.resize( size[0], size[1] )
 
-		self.menuBar    = QtGui.QMenuBar()
-		self.fileMenu   = QtGui.QMenu("File", self)
-		self.helpAction = self.fileMenu.addAction("Help")
-		self.exitAction = self.fileMenu.addAction("Exit")
-		self.content    = QtGui.QVBoxLayout()
+		menuBar    = QtGui.QMenuBar()
+		fileMenu   = QtGui.QMenu("File", self)
+		helpAction = fileMenu.addAction("Help")
+		exitAction = fileMenu.addAction("Exit")
 
-		self.menuBar.addMenu( self.fileMenu )
-		self.content.setMenuBar(self.menuBar)
-		self.setLayout(self.content)
+		menuBar.addMenu( fileMenu )
+		self.setMenuBar( menuBar )	
