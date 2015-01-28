@@ -27,6 +27,7 @@ class Layout( QtGui.QWidget ):
 		offsetY = 0
 		for item in added :
 			item.setParent( self )
+			item.setVisible( True )
 
 			x = item.geometry().x()
 			y = item.geometry().y()
