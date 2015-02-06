@@ -11,3 +11,4 @@ from Floatfield import Floatfield
 from Dropmenu import Dropmenu
 from Checkbox import Checkbox
 from Colorpicker import Colorpicker
+from Tree import Tree
