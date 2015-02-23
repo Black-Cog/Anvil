@@ -9,3 +9,4 @@ class Floatfield( QtGui.QDoubleSpinBox ):
 		self.setMaximum( max )
 		self.setValue( value )
 		self.setGeometry( x, y, w, h )
+		self.setButtonSymbols( QtGui.QAbstractSpinBox.NoButtons )
