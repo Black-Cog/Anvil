@@ -65,6 +65,9 @@ class Colorpicker(QtGui.QWidget):
         self.popup = _Popup( source=self )
         self.popup.show()
 
+    def getValue( self ):
+        return self.color
+
 
 class _Popup( QtGui.QWidget ):
     def __init__( self, source ):

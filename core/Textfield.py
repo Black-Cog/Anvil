@@ -8,3 +8,6 @@ class Textfield( QtGui.QLineEdit ):
 		self.setText( text )
 		self.setEnabled( enable )
 		self.setGeometry( x, y, w, h )
+
+	def getValue( self ):
+		return self.text()
