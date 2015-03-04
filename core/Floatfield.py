@@ -10,3 +10,6 @@ class Floatfield( QtGui.QDoubleSpinBox ):
 		self.setValue( value )
 		self.setGeometry( x, y, w, h )
 		self.setButtonSymbols( QtGui.QAbstractSpinBox.NoButtons )
+
+	def getValue( self ):
+		return self.value()
