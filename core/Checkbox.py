@@ -11,3 +11,9 @@ class Checkbox( QtGui.QCheckBox ):
 
 		self.setCheckState( stateValue )
 		self.setGeometry( x, y, w, h )
+
+	def getValue( self ):
+		if self.checkState() == QtCore.Qt.CheckState.Checked:
+			return True
+		else:
+			return False
