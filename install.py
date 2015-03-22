@@ -27,7 +27,7 @@ anvilPatchVersion     = 1 # bug fixes
 
 
 softwareEnvironment = 'f:/software/'
-softwareName = 'anvil_%s.%s.%s.%sdev' %( anvilMilestoneVersion, anvilMajorVersion, anvilMinorVersion, anvilPatchVersion )
+softwareName = 'anvil_%s.%s.%s.%sdev/%s' %( anvilMilestoneVersion, anvilMajorVersion, anvilMinorVersion, anvilPatchVersion, 'Anvil' )
 softwarePath = '%s%s/' %( softwareEnvironment, softwareName )
 
 
