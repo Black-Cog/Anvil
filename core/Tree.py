@@ -2,10 +2,20 @@
 from PySide import QtGui, QtCore
 
 class Tree( QtGui.QTreeView ):
-	def __init__(self):
+	def __init__( self, x=0, y=0, w=400, h=300, lineH=35 ):
 		super(Tree, self).__init__()
+		self.setGeometry( x, y, w, h )
+		self.__lineH = lineH
+
+		# signals
+		self.c = _Communicate()
+		self.signalKeySpacePress = self.c.signalKeySpacePress
 
 	def add( self, items ):
+		'''
+		items need to be format like that : [ { 'name':'', 'id':1, 'iconPath':'', 'tooltip':'', 'iconTooltip':'', 'parentId':None, }, ]
+		'''
+
 		root_model = QtGui.QStandardItemModel()
 		self.setModel( root_model )
 		self.__populateTree(items, root_model.invisibleRootItem())
@@ -15,13 +25,15 @@ class Tree( QtGui.QTreeView ):
 		orderItems = self.__formatList( items )
 
 		for item in orderItems:
-			icon = _Icon( item[2], item[4] )
+			icon = _Icon( item['iconPath'], item['iconTooltip'] )
 
-			newItem = QtGui.QStandardItem( item[0] )
-			newItem.setToolTip( item[3] )
+			newItem = _Item( item['name'] )
+			newItem.setItemId( item['id'] )
+			newItem.setToolTip( item['tooltip'] )
 			newItem.setIcon( icon.pixmap )
+			newItem.setSizeHint( QtCore.QSize(self.__lineH, self.__lineH) )
 
-			if not item[5]:
+			if not item['parentId']:
 				parent.appendRow(newItem)
 			else:
 				# define childrenList
@@ -32,7 +44,7 @@ class Tree( QtGui.QTreeView ):
 					# add children in the childList
 					for j in range( childItem.rowCount() ) : childList.append( childItem.child(j) )
 
-					if childItem.text() == item[5]:
+					if childItem.itemId == item['parentId']:
 						childItem.appendRow( newItem )
 						break
 
@@ -41,8 +53,8 @@ class Tree( QtGui.QTreeView ):
 		dirtyList = []
 
 		for item in items:
-			name   = item[0]
-			parent = item[5]
+			name   = item['id']
+			parent = item['parentId']
 
 			if not parent:
 				newList.append( item )
@@ -55,14 +67,37 @@ class Tree( QtGui.QTreeView ):
 
 		return newList
 
+	def keyPressEvent(self, event):
+		k = event.key()
+		if k == QtCore.Qt.Key_Space:
+			self.signalKeySpacePress.emit()
+
+	def getCurrentItemId( self ):
+		'''
+		return the itemId of the current item.
+		'''
+		index = self.currentIndex()
+		itemId = self.model().itemFromIndex( index ).itemId
+
+		return itemId
+
+
+
+class _Item( QtGui.QStandardItem ):
+	def setItemId( self, itemId ):
+		self.itemId = itemId
 
 class _Icon():
-	def __init__(self, icon, tooltip):
+	def __init__(self, icon, tooltip, w=50, h=50):
 		self.pixmap = QtGui.QPixmap(icon)
 		self.tooltip = tooltip
+		# todo : fix icon size
+		# self.pixmap.scaled( w, h, QtCore.Qt.KeepAspectRatio)
+		# self.pixmap.setGeometry( x, y, w, h )
+		# self.pixmap.scaledToHeight( h )
 
-
-
+class _Communicate( QtCore.QObject ):
+	signalKeySpacePress = QtCore.Signal()
 
 
 
