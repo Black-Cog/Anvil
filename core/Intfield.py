@@ -78,3 +78,7 @@ class Intfield( QtGui.QLineEdit ):
 				print 'mouse'
 
 		return QtGui.QWidget.eventFilter(self, widget, event)
+
+	# todo : add basic expression system 
+	def expression(self):
+		return
