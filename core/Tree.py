@@ -96,9 +96,13 @@ class Tree( QtGui.QTreeView ):
 		return the itemId of the current item.
 		'''
 		index = self.currentIndex()
-		itemId = self.model().itemFromIndex( index ).itemId
+		item = self.model().itemFromIndex( index )
+		if item:
+			itemId = item.itemId
 
-		return itemId
+			return itemId
+
+		return None
 
 
 
