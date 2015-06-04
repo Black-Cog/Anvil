@@ -10,6 +10,9 @@ class Tree( QtGui.QTreeView ):
 		# signals
 		self.c = _Communicate()
 		self.signalKeySpacePress = self.c.signalKeySpacePress
+		self.signalLeftClick = self.c.signalLeftClick
+		self.signalRightClick = self.c.signalRightClick
+		self.signalDoubleClick = self.c.signalDoubleClick
 
 	def add( self, items ):
 		'''
@@ -67,10 +70,26 @@ class Tree( QtGui.QTreeView ):
 
 		return newList
 
-	def keyPressEvent(self, event):
+	def keyPressEvent( self, event ):
 		k = event.key()
 		if k == QtCore.Qt.Key_Space:
 			self.signalKeySpacePress.emit()
+
+		super(Tree, self).keyPressEvent(event)
+
+	def mouseReleaseEvent( self, event ):
+		if event.button() == QtCore.Qt.LeftButton:
+			self.signalLeftClick.emit()
+
+		if event.button() == QtCore.Qt.RightButton:
+			self.signalRightClick.emit()
+
+		super(Tree, self).mouseReleaseEvent(event)
+
+	def mouseDoubleClickEvent(self, event):
+		self.signalDoubleClick.emit()
+
+		super(Tree, self).mouseDoubleClickEvent(event)
 
 	def getCurrentItemId( self ):
 		'''
@@ -98,6 +117,9 @@ class _Icon():
 
 class _Communicate( QtCore.QObject ):
 	signalKeySpacePress = QtCore.Signal()
+	signalLeftClick = QtCore.Signal()
+	signalRightClick = QtCore.Signal()
+	signalDoubleClick = QtCore.Signal()
 
 
 
