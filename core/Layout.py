@@ -5,7 +5,8 @@ class Layout( QtGui.QWidget ):
 	"""docstring for Layout"""
 	def __init__( self, parent=None, x=None, y=None, w=None, h=None, scroll=False, margin=[10,10] ):
 		super( Layout, self ).__init__()
-		self.setParent( parent )
+		if parent:
+			self.setParent( parent )
 		self.__scroll = scroll
 		self.__margin = margin
 
@@ -21,7 +22,11 @@ class Layout( QtGui.QWidget ):
 
 		# define size
 		items  = [ x, y, w, h ]
-		origin = [ parent.geometry().x(), parent.geometry().y(), parent.geometry().width(), parent.geometry().height() ]
+		if parent:
+			origin = [ parent.geometry().x(), parent.geometry().y(), parent.geometry().width(), parent.geometry().height() ]
+		else:
+			origin = [ 0, 0, 50, 50 ]
+
 		values = []
 		for i in range( len(items) ):
 			if items[i] : values.append( items[i] )
@@ -59,9 +64,14 @@ class Layout( QtGui.QWidget ):
 
 		# increment line offset height and width
 		self.linesH += offsetY + 5
-		if self.linesW < offsetX : self.linesW = offsetX
+		if self.linesW < offsetX:
+			self.linesW = offsetX
 
-		# resize teh lqyout in the case of a scroll
+		# resize the layout in the case of a scroll
 		if self.__scroll : self.layout.resize( self.linesW+self.__margin[0], self.linesH+self.__margin[1] )
 
-
+	def clean( self ):
+		self.linesH = self.__margin[1]
+		for children in self.children():
+			children.setParent( None )
+			del children
