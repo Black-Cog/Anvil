@@ -15,7 +15,7 @@ class Intfield( QtGui.QLineEdit ):
 		self.installEventFilter( self )
 
 	def getValue( self ):
-		return self.text()
+		return int( self.text() )
 
 	def __checkMinMax( self ):
 		if int( self.text() ) < self.min:
