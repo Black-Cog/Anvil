@@ -3,7 +3,7 @@ from PySide import QtCore, QtGui
 
 class Itemlist( QtGui.QListWidget ):
 	"""docstring for Itemlist"""
-	def __init__( self, parent=None, items=[], click=None, dbclick=None, x=0, y=0, w=200, h=200 ):
+	def __init__( self, parent=None, items=[], click=None, dbclick=None, x=0, y=0, w=200, h=200, name=None ):
 		super( Itemlist, self ).__init__()
 		self.setParent( parent )
 		self.setGeometry( x, y, w, h )
@@ -13,6 +13,8 @@ class Itemlist( QtGui.QListWidget ):
 		# actions
 		if click : self.itemClicked.connect( click )
 		if dbclick : self.itemDoubleClicked.connect( dbclick )
+
+		self.name = name
 
 	@staticmethod
 	def itemConvert( dic={} ):

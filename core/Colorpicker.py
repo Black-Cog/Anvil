@@ -5,11 +5,13 @@ import Forge.core
 
 class Colorpicker(QtGui.QWidget):
 
-    def __init__( self, color=[ .5, .5, .5 ], x=0, y=0, w=500, h=50 ):
+    def __init__( self, color=[ .5, .5, .5 ], x=0, y=0, w=500, h=50, name=None ):
         super(Colorpicker, self).__init__()
         self.setGeometry( x, y, w, h )
         self.color = Forge.core.Color( color )
         self.fieldChange = True
+
+        self.name = name
 
         # define class
         Alayout     = Anvil.core.Layout

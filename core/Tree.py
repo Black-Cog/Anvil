@@ -2,7 +2,7 @@
 from PySide import QtGui, QtCore
 
 class Tree( QtGui.QTreeView ):
-	def __init__( self, x=0, y=0, w=400, h=300, lineH=35 ):
+	def __init__( self, x=0, y=0, w=400, h=300, lineH=35, name=None ):
 		super(Tree, self).__init__()
 		self.setGeometry( x, y, w, h )
 		self.__lineH = lineH
@@ -13,6 +13,8 @@ class Tree( QtGui.QTreeView ):
 		self.signalLeftClick = self.c.signalLeftClick
 		self.signalRightClick = self.c.signalRightClick
 		self.signalDoubleClick = self.c.signalDoubleClick
+
+		self.name = name
 
 	def add( self, items ):
 		'''

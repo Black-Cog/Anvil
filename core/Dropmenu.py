@@ -3,10 +3,12 @@ from PySide import QtCore, QtGui
 
 class Dropmenu( QtGui.QComboBox ):
 	"""docstring for Dropmenu"""
-	def __init__( self, items=[], w=70, h=25, x=0, y=0 ):
+	def __init__( self, items=[], w=70, h=25, x=0, y=0, name=None ):
 		super( Dropmenu, self ).__init__()
 		self.setGeometry( x, y, w, h )
 		self.add( items=items )
+
+		self.name = name
 
 	def value( self ):
 
