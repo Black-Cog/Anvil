@@ -3,7 +3,7 @@ from PySide import QtGui, QtCore
 
 class Intfield( QtGui.QLineEdit ):
 	"""docstring for Intfield"""
-	def __init__(self, value=1, min=0, max=2048, w=70, h=25, x=0, y=0 ):
+	def __init__(self, value=1, min=0, max=2048, w=70, h=25, x=0, y=0, name=None ):
 		super(Intfield, self).__init__()
 		self.setText( str(value) )
 		self.setGeometry( x, y, w, h )
@@ -13,6 +13,8 @@ class Intfield( QtGui.QLineEdit ):
 		self.editingFinished.connect(self.__checkInput)
 
 		self.installEventFilter( self )
+
+		self.name = name
 
 	def getValue( self ):
 		return int( self.text() )

@@ -8,3 +8,5 @@ class Box( QtGui.QGroupBox ):
 		self.setParent( parent )
 		self.setTitle( name )
 		self.setGeometry( x, y, w, h )
+
+		self.name = name

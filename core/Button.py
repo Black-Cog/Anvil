@@ -8,3 +8,5 @@ class Button( QtGui.QPushButton ):
 		self.setText( name )
 		self.setGeometry( x, y, w, h )
 		self.clicked.connect( cmd )
+
+		self.name = name

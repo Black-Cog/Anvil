@@ -3,7 +3,7 @@ from PySide import QtCore, QtGui
 
 class Layout( QtGui.QWidget ):
 	"""docstring for Layout"""
-	def __init__( self, parent=None, x=None, y=None, w=None, h=None, scroll=False, margin=[10,10] ):
+	def __init__( self, parent=None, x=None, y=None, w=None, h=None, scroll=False, margin=[10,10], name=None ):
 		super( Layout, self ).__init__()
 		if parent:
 			self.setParent( parent )
@@ -39,6 +39,8 @@ class Layout( QtGui.QWidget ):
 		# init line offset vertical
 		self.linesW = self.__margin[0]
 		self.linesH = self.__margin[1]
+
+		self.name = name
 
 	def add( self, added=None ):
 		try : iter( added )

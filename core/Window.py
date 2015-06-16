@@ -3,7 +3,7 @@ from PySide import QtCore, QtGui
 
 class Window( QtGui.QMainWindow ):
 	"""docstring for Window"""
-	def __init__( self, title='undefind', iconPath=None, size=[500, 400], menuBar=True ):
+	def __init__( self, title='undefind', iconPath=None, size=[500, 400], menuBar=True, name=None ):
 		super( Window, self ).__init__()
 		self.setWindowTitle( title )
 		self.resize( size[0], size[1] )
@@ -19,3 +19,5 @@ class Window( QtGui.QMainWindow ):
 
 			menuBar.addMenu( fileMenu )
 			self.setMenuBar( menuBar )
+
+		self.name = name
