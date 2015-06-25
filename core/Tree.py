@@ -33,6 +33,7 @@ class Tree( QtGui.QTreeView ):
 			icon = _Icon( item['iconPath'], item['iconTooltip'] )
 
 			newItem = _Item( item['name'] )
+			newItem.setItemName( item['name'] )
 			newItem.setItemId( item['id'] )
 			newItem.setToolTip( item['tooltip'] )
 			newItem.setIcon( icon.pixmap )
@@ -106,11 +107,27 @@ class Tree( QtGui.QTreeView ):
 
 		return None
 
+	def getCurrentItemName( self ):
+		'''
+		return the itemName of the current item.
+		'''
+		index = self.currentIndex()
+		item = self.model().itemFromIndex( index )
+		if item:
+			itemName = item.itemName
+
+			return itemName
+
+		return None
+
 
 
 class _Item( QtGui.QStandardItem ):
 	def setItemId( self, itemId ):
 		self.itemId = itemId
+
+	def setItemName( self, itemName ):
+		self.itemName = itemName
 
 class _Icon():
 	def __init__(self, icon, tooltip, w=50, h=50):
