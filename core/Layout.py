@@ -74,6 +74,9 @@ class Layout( QtGui.QWidget ):
 
 	def clean( self ):
 		self.linesH = self.__margin[1]
-		for children in self.children():
+		for children in self.getChildren():
 			children.setParent( None )
 			del children
+
+	def getChildren( self ):
+		return self.children()
