@@ -13,3 +13,7 @@ class Textfield( QtGui.QLineEdit ):
 
 	def getValue( self ):
 		return self.text()
+
+	def setValue( self, value ):
+		self.setText( value )
+
