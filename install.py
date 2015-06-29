@@ -26,7 +26,7 @@ anvilPatchVersion     = 1 # bug fixes
 ###############################################################################################
 
 
-softwareEnvironment = 'f:/software/'
+softwareEnvironment = Forge.core.Env().software
 softwareName = 'anvil_%s.%s.%s.%sdev/%s' %( anvilMilestoneVersion, anvilMajorVersion, anvilMinorVersion, anvilPatchVersion, 'Anvil' )
 softwarePath = '%s%s/' %( softwareEnvironment, softwareName )
 
