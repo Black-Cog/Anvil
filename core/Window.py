@@ -1,5 +1,6 @@
 
 from PySide import QtCore, QtGui
+import Style
 
 class Window( QtGui.QMainWindow ):
 	"""docstring for Window"""
@@ -21,3 +22,5 @@ class Window( QtGui.QMainWindow ):
 			self.setMenuBar( menuBar )
 
 		self.name = name
+
+		self.setStyleSheet( Style.blackCog )

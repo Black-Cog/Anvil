@@ -3,6 +3,7 @@ import math
 import Anvil.core
 import Forge.core
 
+# todo : refactor and implement better colorspace managment
 class Colorpicker(QtGui.QWidget):
 
     def __init__( self, color=[ .5, .5, .5 ], x=0, y=0, w=500, h=50, name=None ):
