@@ -1,6 +1,7 @@
 
 from PySide import QtCore, QtGui
 
+# todo : refactor to be more convenient
 class Layout( QtGui.QWidget ):
 	"""docstring for Layout"""
 	def __init__( self, parent=None, x=None, y=None, w=None, h=None, scroll=False, margin=[10,10], name=None ):
